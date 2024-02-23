@@ -15,7 +15,7 @@ public class Cupcake {
     public static void enterLabyrinth() throws InterruptedException {
         int max = num_guests;
         int min = 0;
-        totalEntered++;
+
         while (plateCount < num_guests) {
 
             sem.acquire();
@@ -25,17 +25,19 @@ public class Cupcake {
                 cupcakeAvailable = false;
                 eaten[currentGuest] = true;
                 System.out.println("Guest #" + currentGuest + " ate the cupcake!");
+                totalEntered++;
             }
 
             if (currentGuest == 0 && !cupcakeAvailable) {
                 plateCount++;
                 cupcakeAvailable = true;
                 System.out.println("The leader counts an empty plate and replaces it with a cupcake");
-
+                totalEntered++;
             }
 
             if(eaten[currentGuest] && cupcakeAvailable){
                 System.out.println("Guest #" + currentGuest + " can't eat anymore");
+                totalEntered++;
             }
             sem.release();
 
@@ -74,6 +76,6 @@ public class Cupcake {
         }
 
         System.out.println("Everyone has eaten a cupcake, time to go home!");
-
+        System.out.println(totalEntered);
     }
 }
