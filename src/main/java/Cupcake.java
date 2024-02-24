@@ -8,7 +8,6 @@ public class Cupcake {
     private static int plateCount = 0;
     private static boolean cupcakeAvailable = true;
     private static int currentGuest;
-    private static boolean isComplete = false;
     private static final Semaphore sem = new Semaphore(1);
     private static int totalEntered = 0;
 
