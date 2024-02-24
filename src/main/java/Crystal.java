@@ -11,6 +11,7 @@ public class Crystal {
     private static final Condition[] conditions = new Condition[num_guests];
     private static final Queue<Integer> order = new LinkedList<>();
     private static boolean isQueueEmpty = false;
+    private static int totalVisited = 0;
 
     public static boolean getRandomBoolean() {
         return Math.random() < 0.5;
@@ -30,6 +31,7 @@ public class Crystal {
                     break;
                 }
                 System.out.println("Guest # " + index + " has seen the crystal and is now leaving.");
+                totalVisited++;
                 boolean viewStatus = getRandomBoolean();
                 if (viewStatus) {
                     System.out.println("Guest # " + index + " does not want to see the crystal again");
@@ -76,6 +78,7 @@ public class Crystal {
         for (Thread thread : guests) {
             thread.join();
         }
-        System.out.println("Everyone has seen the crystal however many times they wanted");
+        System.out.println("Everyone has seen the crystal however many times they wanted!");
+        System.out.println(totalVisited + " entered the room");
     }
 }
